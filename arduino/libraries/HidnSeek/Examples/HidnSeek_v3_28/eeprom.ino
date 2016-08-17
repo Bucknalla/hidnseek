@@ -50,10 +50,10 @@ void dumpEEprom() {
     today = 0;
     EEPROM.write(ADDR_TODAY, 0);;
   }
-  serialString(PSTR("Last day:"));
+  HidnSeek.serialString(PSTR("Last day:"));
   Serial.println(today);
   // Display numbers of messages sent to sigfox network on day 1, 2, 3, ... , 30, 31
-  serialString(PSTR("Usage per days:"));
+  HidnSeek.serialString(PSTR("Usage per days:"));
   for (int i = ADDR_SENT; i < ADDR_SENT + 31; i++) {
     MsgCount = EEPROM.read(i);
     if (MsgCount == 255) {

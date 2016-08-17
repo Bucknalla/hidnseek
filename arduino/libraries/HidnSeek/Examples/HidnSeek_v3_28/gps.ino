@@ -112,32 +112,32 @@ void print_date()
 
 void printData(bool complete) {
   print_date();
-  serialString(PSTR("fix="));
+  HidnSeek.serialString(PSTR("fix="));
   Serial.print(fix_age);
   if (complete) {
-    serialString(PSTR(", lat="));
+    HidnSeek.serialString(PSTR(", lat="));
     Serial.print(p.lat, 7);
-    serialString(PSTR(", lon="));
+    HidnSeek.serialString(PSTR(", lon="));
     Serial.print(p.lon, 7);
-    serialString(PSTR(", alt="));
+    HidnSeek.serialString(PSTR(", alt="));
     Serial.print(alt);
-    serialString(PSTR(", cap="));
+    HidnSeek.serialString(PSTR(", cap="));
     Serial.print((gps.course() / 90) % 4);
-    serialString(PSTR(", spd="));
+    HidnSeek.serialString(PSTR(", spd="));
     Serial.print(spd);
-    serialString(PSTR(", sat="));
+    HidnSeek.serialString(PSTR(", sat="));
     Serial.print(sat);
   }
-  if (GPSactive) serialString(PSTR(", GPS "));
+  if (GPSactive) HidnSeek.serialString(PSTR(", GPS "));
   if (forceSport) {
-    serialString(PSTR(", sport="));
+    HidnSeek.serialString(PSTR(", sport="));
     Serial.print(limitSport);
   }
-  serialString(PSTR(", bat="));
+  HidnSeek.serialString(PSTR(", bat="));
   Serial.print(batteryPercent);
-  serialString(PSTR("%, noSat="));
+  HidnSeek.serialString(PSTR("%, noSat="));
   Serial.print(noSat);
-  serialString(PSTR(", syncSat="));
+  HidnSeek.serialString(PSTR(", syncSat="));
   Serial.println(syncSat);
 }
 
@@ -174,20 +174,20 @@ void decodPayload() {
   unsigned int bat_ = (p.cpx >> 3) & 127;
   unsigned int mod_ = p.cpx & 7;
   print_date();
-  serialString(PSTR("msg="));
+  HidnSeek.serialString(PSTR("msg="));
   Serial.print(MsgCount);
-  serialString(PSTR(" lat="));
+  HidnSeek.serialString(PSTR(" lat="));
   Serial.print(p.lat, 7);
-  serialString(PSTR(", lon="));
+  HidnSeek.serialString(PSTR(", lon="));
   Serial.print(p.lon, 7);
-  serialString(PSTR(", alt="));
+  HidnSeek.serialString(PSTR(", alt="));
   Serial.print(alt_);
-  serialString(PSTR(", cap="));
+  HidnSeek.serialString(PSTR(", cap="));
   Serial.print(cap_);
-  serialString(PSTR(", spd="));
+  HidnSeek.serialString(PSTR(", spd="));
   Serial.print(spd_);
-  serialString(PSTR(", bat="));
+  HidnSeek.serialString(PSTR(", bat="));
   Serial.print(bat_);
-  serialString(PSTR(", mode="));
+  HidnSeek.serialString(PSTR(", mode="));
   Serial.println(mod_);
 }

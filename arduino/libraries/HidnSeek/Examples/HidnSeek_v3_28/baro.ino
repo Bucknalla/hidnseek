@@ -27,9 +27,9 @@ bool bmp180Measure(float *Temp, unsigned int *Press)
 
 void bmp180Print()
 {
-  serialString(PSTR("Temp: "));
+  HidnSeek.serialString(PSTR("Temp: "));
   Serial.print(Temp, 2);
-  serialString(PSTR("'C Press: "));
+  HidnSeek.serialString(PSTR("'C Press: "));
   Serial.print(Press);
-  serialString(PSTR("mb\r\n"));
+  HidnSeek.serialString(PSTR("mb\r\n"));
 }

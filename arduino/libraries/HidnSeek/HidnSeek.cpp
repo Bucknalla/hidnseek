@@ -177,6 +177,13 @@ unsigned long HidnSeek::getID() {
     return id;
 }
 
+//Clear the
+int HidnSeek::freeRam() {
+  extern int __heap_start, *__brkval;
+  int v;
+  return (int) &v - (__brkval == 0 ? (int) &__heap_start : (int) __brkval);
+}
+
 //Power value:
 bool HidnSeek::setPower(uint8_t power) {
     // 13,9dBm with 0,4,47 for the parameter

@@ -14,16 +14,16 @@
   along with HidnSeek.  If not, see <http://www.gnu.org/licenses/>.*/
 
 bool initMems() {
-  serialString(PSTR("Init Mems:"));
+  HidnSeek.serialString(PSTR("Init Mems:"));
   Wire.begin();
   accel.begin(false, ACCEL_MODE);
   if (accel.update() != 0) {
-    serialString(PSTR("Fail"));
+    HidnSeek.serialString(PSTR("Fail"));
     Serial.println();
     return false;
   }
   else {
-    serialString(PSTR("OK"));
+    HidnSeek.serialString(PSTR("OK"));
     Serial.println();
     return true;
   }
@@ -60,25 +60,25 @@ bool accelStatus() {
       }
       if (seq == 0 && accelPosition == POS_FACE_UP && newPosition == POS_SIDE_UP) {
         seq++;
-        NoflashRed();
+        HidnSeek.NoflashRed();
       }
       else if (seq == 1 && accelPosition == POS_SIDE_UP && newPosition == POS_SIDE_DN) {
         seq++;
-        NoflashRed();
+        HidnSeek.NoflashRed();
       }
       else if (seq == 2 && accelPosition == POS_SIDE_DN && newPosition == POS_SIDE_UP) {
         seq++;
-        NoflashRed();
+        HidnSeek.NoflashRed();
       }
       else if (seq == 2 && accelPosition == POS_SIDE_DN && newPosition == POS_FACE_UP) {
         seq += 2;
-        NoflashRed();
+        HidnSeek.NoflashRed();
       }
       else seq = 0;
       accelPosition = newPosition;
       if (seq == 3) { // seq == 3
         saveEEprom();
-        flashRed(20);
+        HidnSeek.flashRed(20);
         PORTC = 0;
         DDRC = 0;
         PORTD = 0;
@@ -87,12 +87,12 @@ bool accelStatus() {
         DDRB = B00000010;
         seq = 0;
       }
-      if (seq == 4) {
+      if (seq == 4) { // Places the device into sports mode
         if (MsgCount < 90) {
           forceSport = 1 - forceSport;
           limitSport = 0;
           if (forceSport && !GPSactive) gpsInit();
-          flashRed(8);
+          HidnSeek.flashRed(8);
         }
         seq = 0;
       }

@@ -14,7 +14,7 @@
   along with HidnSeek.  If not, see <http://www.gnu.org/licenses/>.*/
 
 bool initSigFox() {
-  serialString(PSTR("SigFox: "));
+  HidnSeek.serialString(PSTR("SigFox: "));
   unsigned long previousMillis = millis();
   while ((uint16_t) (millis() - previousMillis) < 6000) {
     if (HidnSeek.begin() == 3) {
@@ -23,7 +23,7 @@ bool initSigFox() {
     }
     else delay(200);
   }
-  serialString(PSTR("Fail\r\n"));
+  HidnSeek.serialString(PSTR("Fail\r\n"));
   return false;
 }
 
